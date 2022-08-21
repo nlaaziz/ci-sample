@@ -12,3 +12,9 @@ jobs:
       run: npx envinfo
     - name: Build application
       run: yarn install && cd android && chmod +x gradlew && ./gradlew assembleRelease && ls -R
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-apk
+        path: ./android/app/build/outputs/apk/release/app-release.apk
+        retention-days: 1
